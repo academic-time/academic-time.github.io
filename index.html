@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meeting Cost Calculator</title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-dark p-3">
+    <div class="container bg-light p-3">
+
+        <h1 class="text-center pb-5">How Much!?</h1>
+
+        <div class="personType text-center">
+            <p class="d-inline-block">Academic (Gd. 7)</p>
+            <i class="fa-solid fa-arrow-down" id="grade7down"></i>
+            <input type="number" id="grade7" value="0">
+            <i class="fa-solid fa-arrow-up" id="grade7up"></i>
+        </div>
+
+        <div class="personType text-center">
+            <p class="d-inline-block">Academic (Gd. 8)</p>
+            <i class="fa-solid fa-arrow-down" id="grade8down"></i>
+            <input type="number" id="grade8" value="0">
+            <i class="fa-solid fa-arrow-up" id="grade8up"></i>
+        </div>
+
+        <div class="personType text-center">
+            <p class="d-inline-block">Academic (Gd. 9)</p>
+            <i class="fa-solid fa-arrow-down" id="grade9down"></i>
+            <input type="number" id="grade9" value="0">
+            <i class="fa-solid fa-arrow-up" id="grade9up"></i>
+        </div>
+
+        <div class="personType text-center">
+            <p class="d-inline-block">Academic (Prof)</p>
+            <i class="fa-solid fa-arrow-down" id="grade10down"></i>
+            <input type="number" id="grade10" value="0">
+            <i class="fa-solid fa-arrow-up" id="grade10up"></i>
+        </div>
+
+        <div class="personType text-center my-3">
+            <p class="d-inline-block">Length (hours)</p>
+            <i class="fa-solid fa-arrow-down" id="lengthup"></i>
+            <input type="number" id="length" value="1">
+            <i class="fa-solid fa-arrow-up" id="lengthdown"></i>
+        </div>
+
+        <p class="text-center"><button type="button text-center" class="btn btn-primary" id ="valueButton">Calculate</button></p>
+        <p class="h2 pt-3 text-center" id="value"></p>
+
+
+    </div>
+</body>
+
+<script>
+let grade7 = 43434;
+let grade8 = 47419;
+let grade9 = 56587;
+let grade10 = 63668;
+
+let employerContribution = .237;
+let unitsInYear = 1768;
+
+grade7 = grade7 * (1+employerContribution);
+grade8 = grade8 * (1+employerContribution);
+grade9 = grade9 * (1+employerContribution);
+grade10 = grade10 * (1+employerContribution);
+
+grade7 = grade7/unitsInYear;
+grade8 = grade8/unitsInYear;
+grade9 = grade9/unitsInYear;
+grade10 = grade10/unitsInYear;
+
+let valueButton = document.getElementById("valueButton");
+
+
+valueButton.addEventListener("click",function(){
+    let grade7hours = document.getElementById("grade7").value;
+    let grade8hours = document.getElementById("grade8").value;
+    let grade9hours = document.getElementById("grade9").value;
+    let grade10hours = document.getElementById("grade10").value;
+    grade7hours = grade7hours * grade7;
+    grade8hours = grade8hours * grade8;
+    grade9hours = grade9hours * grade9;
+    grade10hours = grade10hours * grade10;
+    let totalValue = Math.round((+grade7hours + +grade8hours + +grade9hours + +grade10hours)*100)/100;
+
+    totalValue = totalValue * document.getElementById("length").value;
+    document.getElementById("value").innerHTML = "This meeting costs £" + totalValue;
+})
+
+document.getElementById("grade7up").addEventListener("click",function(){
+    document.getElementById("grade7").value = +document.getElementById("grade7").value + 1;
+})
+
+document.getElementById("grade8up").addEventListener("click",function(){
+    document.getElementById("grade8").value = +document.getElementById("grade8").value + 1;
+})
+
+document.getElementById("grade9up").addEventListener("click",function(){
+    document.getElementById("grade9").value = +document.getElementById("grade9").value + 1;
+})
+
+document.getElementById("grade10up").addEventListener("click",function(){
+    document.getElementById("grade10").value = +document.getElementById("grade10").value + 1;
+})
+
+document.getElementById("lengthup").addEventListener("click",function(){
+    document.getElementById("length").value = +document.getElementById("length").value - 1;
+})
+
+document.getElementById("grade7down").addEventListener("click",function(){
+    document.getElementById("grade7").value = +document.getElementById("grade7").value - 1;
+})
+
+document.getElementById("grade8down").addEventListener("click",function(){
+    document.getElementById("grade8").value = +document.getElementById("grade8").value - 1;
+})
+
+document.getElementById("grade9down").addEventListener("click",function(){
+    document.getElementById("grade9").value = +document.getElementById("grade9").value - 1;
+})
+
+document.getElementById("grade10down").addEventListener("click",function(){
+    document.getElementById("grade10").value = +document.getElementById("grade10").value - 1;
+})
+
+document.getElementById("lengthdown").addEventListener("click",function(){
+    document.getElementById("length").value = +document.getElementById("length").value + 1;
+})
+
+</script>
+</html>
